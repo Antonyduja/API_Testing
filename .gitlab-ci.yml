@@ -1,0 +1,12 @@
+stages:
+  - test
+
+test:
+  stage: test
+  image: node:14  # Choose an appropriate Node.js version
+  script:
+    - npm install -g newman
+    - newman run path/to/your/collection.json -e path/to/your/environment.json -d path/to/your/iteration_data.csv -r junit,cli
+  artifacts:
+    paths:
+      - newman/*.xml
